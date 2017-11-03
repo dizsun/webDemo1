@@ -1,7 +1,5 @@
 package servlet;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
 import util.ResponseJsonUtils;
 
 import javax.servlet.ServletException;
