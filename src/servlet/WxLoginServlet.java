@@ -13,7 +13,7 @@ import java.util.Map;
 
 import util.ResponseJsonUtils;
 
-@WebServlet(name = "WxLoginServlet")
+@WebServlet(name = "WxLoginServlet",urlPatterns = "/wxLogin")
 public class WxLoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
