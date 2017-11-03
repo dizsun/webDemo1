@@ -1,6 +1,6 @@
 package listener;
 
-import webApp1.DbDao;
+import util.DbDao;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -26,7 +26,7 @@ public class GetConnListener implements ServletContextListener,
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext application = sce.getServletContext();
         String driver = application.getInitParameter("driver");
-        String url = application.getInitParameter("url");
+        String url = application.getInitParameter("url")+"/wxdb";
         String user = application.getInitParameter("username");
         String pass = application.getInitParameter("password");
         DbDao dbDao = new DbDao(driver, url, user, pass);

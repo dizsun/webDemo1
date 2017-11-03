@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,6 +29,7 @@ public class WxLoginServlet extends HttpServlet {
         Map<String,Object> data=new HashMap<>();
         data.put("data",httpResult);
         ResponseJsonUtils.jsonp(response,data);
+        HttpSession session = request.getSession(true);
+        session.setAttribute("flag","true");
     }
-
 }

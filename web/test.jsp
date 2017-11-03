@@ -11,6 +11,6 @@
     <title>hello</title>
 </head>
 <body>
-<jsp:forward page="/wxLogin"/>
+<%=request.getSession(true).getAttribute("flag")%>
 </body>
 </html>

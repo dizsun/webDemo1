@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.sun.org.apache.bcel.internal.generic.DDIV;
-
-import webApp1.DbDao;
+import util.DbDao;
 
 /**
  * Servlet implementation class LoginServlet

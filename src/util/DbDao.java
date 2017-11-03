@@ -1,4 +1,4 @@
-package webApp1;
+package util;
 
 import java.sql.*;
 
