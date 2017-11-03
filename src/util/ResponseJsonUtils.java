@@ -103,10 +103,7 @@ public class ResponseJsonUtils {
      * 返回JSONP数据
      */
     public static void jsonp(HttpServletResponse response, String callback, Object data, String encoding) {
-        StringBuffer sb = new StringBuffer(callback);
-        sb.append("(");
-        sb.append(toJSONString(data));
-        sb.append(");");
+        StringBuffer sb = new StringBuffer(toJSONString(data));
 
         // 设置编码格式
         response.setContentType("text/plain;charset=" + encoding);
