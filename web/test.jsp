@@ -11,6 +11,8 @@
     <title>hello</title>
 </head>
 <body>
-<%=request.getRequestURL()%>
+<%
+
+%>
 </body>
 </html>

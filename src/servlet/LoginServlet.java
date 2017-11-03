@@ -56,16 +56,16 @@ public class LoginServlet extends HttpServlet {
 					rd=request.getRequestDispatcher("/welcom.jsp");
 					rd.forward(request, response);
 				}else {
-					errMsg+="ÄúµÄÓÃ»§ÃûÃÜÂë²»·ûºÏ£¬ÇëÖØĞÂÊäÈë";
+					errMsg+="æ‚¨çš„ç”¨æˆ·åå’Œå¯†ç ä¸ç¬¦,è¯·é‡æ–°è¾“å…¥";
 				}
 			}else {
-				errMsg+="ÄúµÄÓÃ»§Ãû²»´æÔÚ£¬ÇëÏÈ×¢²á";
+				errMsg+="ä½ çš„ç”¨æˆ·åä¸å­˜åœ¨,è¯·é‡æ–°è¾“å…¥";
 			}
 			dbDao.closeConn();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if(errMsg!=null&&!errMsg.equals("")) {
+		if(!errMsg.equals("")) {
 			rd=request.getRequestDispatcher("/login.jsp");
 			request.setAttribute("err", errMsg);
 			rd.forward(request, response);
