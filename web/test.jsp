@@ -11,8 +11,6 @@
     <title>hello</title>
 </head>
 <body>
-<%
-
-%>
+<jsp:forward page="/wxLogin"/>
 </body>
 </html>
