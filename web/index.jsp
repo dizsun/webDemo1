@@ -14,6 +14,6 @@ hello啊<br/>
 <a href="session_request.jsp">session测试</a><br/>
 <a href="login">登陆功能测试</a><br/>
 <a href="test.jsp">nodejs请求测试</a><br/>
-
+<a href="https://localhost/web/index.jsp">https访问</a><br/>
 </body>
 </html>
