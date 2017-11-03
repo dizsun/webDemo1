@@ -3,6 +3,7 @@ package servlet;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,7 +32,10 @@ public class WxLoginServlet extends HttpServlet {
         String httpResult=rju.httpRequest(requestUrl,outputStr);
         Map<String,Object> data=new HashMap<>();
         data.put("data",httpResult);
-        rju.jsonp(response,data);
+        String jsonString = rju.toJSONString(data);
+        RequestDispatcher rd=request.getRequestDispatcher("test_response.jsp");
+        request.setAttribute("data",jsonString);
+        rd.forward(request,response);
     }
 
     public class ResponseJsonUtils {
