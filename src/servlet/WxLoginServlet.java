@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-@WebServlet(name = "WxLoginServlet",urlPatterns = "/wxLogin")
+//@WebServlet(name = "WxLoginServlet",urlPatterns = "/wxLogin")
 public class WxLoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

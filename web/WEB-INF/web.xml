@@ -23,4 +23,13 @@
         <param-name>password</param-name>
         <param-value>root</param-value>
     </context-param>
+    <servlet>
+        <servlet-name>wxLogin</servlet-name>
+        <servlet-class>servlet.WxLoginServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>wxLogin</servlet-name>
+        <url-pattern>/wxLogin</url-pattern>
+    </servlet-mapping>
 </web-app>
