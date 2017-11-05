@@ -33,7 +33,7 @@ public class WxLoginServlet extends HttpServlet {
 //        data.put("data",httpResult);
 //        ResponseJsonUtils.jsonp(response,data);
         if(data.getErrcode()==null) {
-            String sessionId = request.getSession(true).getId();
+            String sessionId = request.getSession(true).getId().replace("sessionId:","");
             response.getWriter().write(sessionId);
         }else {
             response.getWriter().write("error");
