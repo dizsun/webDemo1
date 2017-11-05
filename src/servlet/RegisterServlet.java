@@ -14,10 +14,6 @@ import java.util.Base64;
 @WebServlet(name = "RegisterServlet",urlPatterns = {"/register"})
 public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RedisUtil redisUtil = new RedisUtil();
         String user_openid = redisUtil.queryString(request.getSession().getId());
         String user_nickname=new String(request.getParameter("nickName").getBytes("ISO-8859-1"),"utf-8");
@@ -27,12 +23,19 @@ public class RegisterServlet extends HttpServlet {
             try {
                 if(dbDao.insert("insert into user_info(user_nickname,user_avatarUrl,user_openid) value(?,?,?)",user_nickname,user_avatarUrl,user_openid)){
                     response.getWriter().write("200");
+                    System.out.println("200");
                 }else {
                     response.getWriter().write("210");
+                    System.out.println("210");
                 }
             } catch (Exception e) {
                 response.getWriter().write("120");
+                System.out.println("120");
             }
         }
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
     }
 }

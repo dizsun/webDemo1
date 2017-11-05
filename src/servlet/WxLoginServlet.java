@@ -20,7 +20,6 @@ public class WxLoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String appid = "wx2ba5834caba16490";
         String appsecret = "6dd9a0d6d2da385980b9f388400eeaa8";
-        System.out.println(appid+"    "+appsecret);
         String js_code = request.getParameter("js_code");
         String requestUrl="https://api.weixin.qq.com/sns/jscode2session";
         String outputStr ="appid="+appid+"&secret="+appsecret+"&js_code=" + js_code + "&grant_type=authorization_code";
@@ -35,6 +34,7 @@ public class WxLoginServlet extends HttpServlet {
                 if(!rs.next()){
                     //未注册
                     response.getWriter().write("{code:\"110\",sessionId:\""+request.getSession().getId()+"\"}");
+                    System.out.println("{code:\"110\",sessionId:\""+request.getSession().getId()+"\"}");
                 }
             } catch (Exception e) {
                 response.getWriter().write("120");
