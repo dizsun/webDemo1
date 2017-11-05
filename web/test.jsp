@@ -1,4 +1,4 @@
-<%--
+<%@ page import="util.RedisUtil" %><%--
   Created by IntelliJ IDEA.
   User: dizsun
   Date: 2017/11/2
@@ -11,7 +11,14 @@
     <title>hello</title>
 </head>
 <body>
-<%=request.getHeader("Cookie")%>
-<%=request.getSession(true).getAttribute("flag")%>
+<%
+    RedisUtil redisUtil=new RedisUtil();
+    String sessionId = redisUtil.queryString(request.getSession().getId());
+    if(sessionId!=null && sessionId!=""){
+        out.write("hello");
+    }else {
+        out.write("error");
+    }
+%>
 </body>
 </html>

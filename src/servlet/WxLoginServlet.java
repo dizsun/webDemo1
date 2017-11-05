@@ -1,6 +1,7 @@
 package servlet;
 
 import util.DataBean;
+import util.RedisUtil;
 import util.ResponseJsonUtils;
 
 import javax.servlet.ServletException;
@@ -8,11 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
-
 
 @WebServlet(name = "WxLoginServlet",urlPatterns = "/wxLogin")
 public class WxLoginServlet extends HttpServlet {
@@ -28,12 +25,13 @@ public class WxLoginServlet extends HttpServlet {
         String outputStr ="appid=wx2ba5834caba16490&secret=6dd9a0d6d2da385980b9f388400eeaa8&js_code=" + js_code + "&grant_type=authorization_code";
         String httpResult = ResponseJsonUtils.httpRequest(requestUrl,outputStr);
         DataBean data = ResponseJsonUtils.getData(httpResult);
-        request.getSession(true).setAttribute("flag",true);
 //        Map<String,Object> data=new HashMap<>();
 //        data.put("data",httpResult);
 //        ResponseJsonUtils.jsonp(response,data);
         if(data.getErrcode()==null) {
             String sessionId = request.getSession(true).getId();
+            RedisUtil redisUtil = new RedisUtil();
+            redisUtil.addString(sessionId,data.getSession_key());
             response.getWriter().write(sessionId);
         }else {
             response.getWriter().write("error");
