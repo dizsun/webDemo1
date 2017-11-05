@@ -7,17 +7,19 @@ import redis.clients.jedis.Jedis;
 public class RedisUtil
 {
 
-    public void addHashMap(String key, HashMap map)
+    public void addHashMap(String key, HashMap<String,String> map)
     {
         Jedis  redis = new Jedis ("127.0.0.1",6379);//连接redis
         redis.hmset(key, map);
-        System.out.println("hashmap set success!");
+        redis.close();
     }
     public HashSet queryHashMapByKey(String key)
     {
         Jedis  redis = new Jedis ("127.0.0.1",6379);//连接redis
         //return (HashSet) redis.hkeys(key);
-        return (HashSet) redis.hvals(key);
+        HashSet result = (HashSet) redis.hvals(key);
+        redis.close();
+        return result;
     }
 
     public String queryString(String key)
@@ -55,5 +57,9 @@ public class RedisUtil
         redis.expire(key, 3600*24);
         redis.close();
     }
-
+    public void removeKey(String key){
+        Jedis  redis = new Jedis ("127.0.0.1",6379);//连接redis
+        redis.del(key);
+        redis.close();
+    }
 }

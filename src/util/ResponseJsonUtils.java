@@ -185,4 +185,8 @@ public class ResponseJsonUtils {
         return data;
     }
 
+    public static String getAccessToken(String jsonStr){
+        JSONObject jsonObject = JSONObject.parseObject(jsonStr);
+        return jsonObject.getString("access_token");
+    }
 }
