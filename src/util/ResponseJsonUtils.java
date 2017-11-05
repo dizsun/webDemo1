@@ -7,6 +7,7 @@ import java.net.URL;
 import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 
 /**
@@ -135,6 +136,12 @@ public class ResponseJsonUtils {
         ResponseJsonUtils.callback = callback;
     }
 
+    /**
+     * 返回request请求结果
+     * @param requestUrl 请求的url
+     * @param outputStr 请求的数据
+     * @return  返回请求的body
+     */
     public static String httpRequest(String requestUrl, String outputStr) {
         StringBuffer buffer = new StringBuffer();
         try {
@@ -161,4 +168,21 @@ public class ResponseJsonUtils {
         }
         return buffer.toString();
     }
+
+    /**
+     * 获取登陆服务器返回的数据
+     * @param jsonStr 返回的json字符串
+     * @return data
+     */
+    public static DataBean getData(String jsonStr){
+        DataBean data=new DataBean();
+        JSONObject jsonObject = JSONObject.parseObject(jsonStr);
+        data.setErrcode(jsonObject.getInteger("errcode"));
+        data.setErrmsg(jsonObject.getString("errmsg"));
+        data.setExpires_in(jsonObject.getInteger("expires_in"));
+        data.setOpenid(jsonObject.getString("openid"));
+        data.setSession_key(jsonObject.getString("session_key"));
+        return data;
+    }
+
 }

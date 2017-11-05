@@ -5,8 +5,6 @@
     <title>table</title>
 </head>
 <body>
-<%
-    DbDao dbDao = (DbDao) application.getAttribute("dbDao");
-%>
+
 </body>
 </html>
