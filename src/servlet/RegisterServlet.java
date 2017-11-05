@@ -32,6 +32,9 @@ public class RegisterServlet extends HttpServlet {
                 response.getWriter().write("120");
                 System.out.println("120");
             }
+        }else {
+            response.getWriter().write("220");
+            System.out.println("220");
         }
     }
 
