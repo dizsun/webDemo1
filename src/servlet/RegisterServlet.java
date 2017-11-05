@@ -13,6 +13,10 @@ import java.io.IOException;
 @WebServlet(name = "RegisterServlet",urlPatterns = {"/register"})
 public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RedisUtil redisUtil = new RedisUtil();
         String user_openid = redisUtil.queryString(request.getSession().getId());
         String user_nickname=new String(request.getParameter("nickName").getBytes("ISO-8859-1"),"utf-8");
@@ -35,9 +39,5 @@ public class RegisterServlet extends HttpServlet {
             response.getWriter().write("220");
             System.out.println("220");
         }
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
     }
 }
