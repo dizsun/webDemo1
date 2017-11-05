@@ -11,6 +11,7 @@
     <title>hello</title>
 </head>
 <body>
+<%=request.getHeader("Cookie")%>
 <%=request.getSession(true).getAttribute("flag")%>
 </body>
 </html>
