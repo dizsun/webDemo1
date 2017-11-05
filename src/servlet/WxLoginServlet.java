@@ -34,7 +34,7 @@ public class WxLoginServlet extends HttpServlet {
 //        ResponseJsonUtils.jsonp(response,data);
         if(data.getErrcode()==null) {
             String sessionId = request.getSession(true).getId();
-            response.getWriter().write("sessionId:" + sessionId);
+            response.getWriter().write(sessionId);
         }else {
             response.getWriter().write("error");
         }
