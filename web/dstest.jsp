@@ -14,7 +14,9 @@
             , "root", "root");
     Statement stmt = conn.createStatement();
     ResultSet rs = stmt.executeQuery("select * from user_info");
-	out.write(""+(rs.next()));
+	if(rs.next()){
+	    out.write(rs.getString(1)+"::"+rs.getString(2)+"::"+rs.getString(3)+"::"+rs.getString(4));
+    }
 %>
 <%--<table bgcolor="aaaaaa" border="1" width="480">--%>
 <%--<tr>--%>
