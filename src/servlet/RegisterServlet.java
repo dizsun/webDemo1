@@ -17,7 +17,7 @@ public class RegisterServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
+//        request.setCharacterEncoding("UTF-8");
         RedisUtil redisUtil = new RedisUtil();
         String user_openid = redisUtil.queryString(request.getSession().getId());
 //        String user_nickname=new String(request.getParameter("nickName").getBytes("ISO-8859-1"),"utf-8");
