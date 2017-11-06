@@ -30,7 +30,7 @@ public class WxLoginServlet extends HttpServlet {
             redisUtil.addString(request.getSession().getId(),data.getOpenid());
             DbDao dbDao = (DbDao)getServletContext().getAttribute("dbDao");
             try {
-                ResultSet rs = dbDao.query("select id from user_info where user_openid=?",data.getOpenid());
+                ResultSet rs = dbDao.query("select * from user_info where user_openid=?",data.getOpenid());
                 if(!rs.next()){
                     //未注册
                     response.getWriter().write("{code:\"110\",sessionId:\""+request.getSession().getId()+"\"}");
