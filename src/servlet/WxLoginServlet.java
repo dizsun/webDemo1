@@ -33,8 +33,13 @@ public class WxLoginServlet extends HttpServlet {
                 ResultSet rs = dbDao.query("select * from user_info where user_openid=?",data.getOpenid());
                 if(!rs.next()){
                     //未注册
-                    response.getWriter().write("{\"code\":\"110\",\"sessionId\":\""+request.getSession().getId()+"\"}");
+//                    response.getWriter().write("{\"code\":\"110\",\"sessionId\":\""+request.getSession().getId()+"\"}");
 //                    System.out.println("{\"code\":\"110\",\"sessionId\":\""+request.getSession().getId()+"\"}");
+                    redisUtil.addString("register_session",request.getSession().getId());
+                    response.getWriter().write("110");
+                }else {
+                    //登陆成功
+                    response.getWriter().write("{\"code\":\"130\",\"sessionId\":\""+request.getSession().getId()+"\"}");
                 }
             } catch (Exception e) {
                 //数据库出错

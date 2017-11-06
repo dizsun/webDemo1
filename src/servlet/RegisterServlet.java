@@ -19,7 +19,7 @@ public class RegisterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        request.setCharacterEncoding("UTF-8");
         RedisUtil redisUtil = new RedisUtil();
-        String user_openid = redisUtil.queryString(request.getSession().getId());
+        String user_openid = redisUtil.queryString(redisUtil.queryString("register_session"));
 //        String user_nickname=new String(request.getParameter("nickName").getBytes("ISO-8859-1"),"utf-8");
         String user_nickname = request.getParameter("nickName");
         String user_avatarUrl = request.getParameter("avatarUrl");
@@ -28,21 +28,17 @@ public class RegisterServlet extends HttpServlet {
             try {
                 //注册成功
                 if (dbDao.insert("insert into user_info(user_nickname,user_avatarUrl,user_openid) value(?,?,?)", user_nickname, user_avatarUrl, user_openid)) {
-                    response.setContentType("text/json;charset=UTF-8");
-                    response.setCharacterEncoding("UTF-8");
-                    response.getWriter().write(request.getParameter("nickName"));
-                    System.out.println("200");
+//                    response.setContentType("text/json;charset=UTF-8");
+//                    response.setCharacterEncoding("UTF-8");
+                    response.getWriter().write("{\"code\":\"200\",\"sessionId\":\""+request.getSession().getId()+"\"}");
                 } else {//注册失败
                     response.getWriter().write("210");
-                    System.out.println("210");
                 }
             } catch (Exception e) {//数据库出错
                 response.getWriter().write("120");
-                System.out.println("120");
             }
         } else {//openid不存在
             response.getWriter().write("220");
-            System.out.println("220");
         }
 
 
