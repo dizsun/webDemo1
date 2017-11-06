@@ -20,8 +20,8 @@ public class RegisterServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         RedisUtil redisUtil = new RedisUtil();
         String user_openid = redisUtil.queryString(request.getSession().getId());
-        String user_nickname=new String(request.getParameter("nickName").getBytes("ISO-8859-1"),"utf-8");
-//        String user_nickname = request.getParameter("nickName");
+//        String user_nickname=new String(request.getParameter("nickName").getBytes("ISO-8859-1"),"utf-8");
+        String user_nickname = request.getParameter("nickName");
         String user_avatarUrl = request.getParameter("avatarUrl");
         if (user_openid != null && !user_openid.equals("")) {
             DbDao dbDao = (DbDao) getServletContext().getAttribute("dbDao");
