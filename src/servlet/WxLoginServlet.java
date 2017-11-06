@@ -33,7 +33,7 @@ public class WxLoginServlet extends HttpServlet {
                 ResultSet rs = dbDao.query("select * from user_info where user_openid=?",data.getOpenid());
                 if(!rs.next()){
                     //未注册
-                    response.getWriter().write("{\"code\":\"110\",\"sessionId\":\""+request.getSession().getId()+"\"}");
+                    response.getWriter().write("{code:\"110\",sessionId:\""+request.getSession().getId()+"\"}");
 //                    System.out.println("{\"code\":\"110\",\"sessionId\":\""+request.getSession().getId()+"\"}");
                 }
             } catch (Exception e) {
