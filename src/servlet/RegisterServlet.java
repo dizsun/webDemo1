@@ -28,6 +28,7 @@ public class RegisterServlet extends HttpServlet {
             try {
                 //注册成功
                 if (dbDao.insert("insert into user_info(user_nickname,user_avatarUrl,user_openid) value(?,?,?)", user_nickname, user_avatarUrl, user_openid)) {
+                    response.setContentType("text/json;charset=UTF-8");
                     response.getWriter().write(request.getParameter("nickName"));
                     System.out.println("200");
                 } else {//注册失败
