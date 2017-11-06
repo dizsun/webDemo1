@@ -26,7 +26,7 @@ public class GetConnListener implements ServletContextListener,
     public void contextInitialized(ServletContextEvent sce) {
         ServletContext application = sce.getServletContext();
         String driver = application.getInitParameter("driver");
-        String url = application.getInitParameter("url")+"/wxdb";
+        String url = application.getInitParameter("url")+"/wxdb?useUnicode=true&characterEncoding=UTF-8";
         String user = application.getInitParameter("username");
         String pass = application.getInitParameter("password");
         DbDao dbDao = new DbDao(driver, url, user, pass);
