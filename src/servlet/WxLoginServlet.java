@@ -37,8 +37,8 @@ public class WxLoginServlet extends HttpServlet {
                     System.out.println("{code:\"110\",sessionId:\""+request.getSession().getId()+"\"}");
                 }
             } catch (Exception e) {
+                //数据库出错
                 response.getWriter().write("120");
-                response.getWriter().write(data.getOpenid());
             }
         }else {
             //微信账号登陆错误

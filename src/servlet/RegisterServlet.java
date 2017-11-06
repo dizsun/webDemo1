@@ -25,18 +25,19 @@ public class RegisterServlet extends HttpServlet {
         if (user_openid != null && !user_openid.equals("")) {
             DbDao dbDao = (DbDao) getServletContext().getAttribute("dbDao");
             try {
+                //注册成功
                 if (dbDao.insert("insert into user_info(user_nickname,user_avatarUrl,user_openid) value(?,?,?)", user_nickname, user_avatarUrl, user_openid)) {
                     response.getWriter().write(request.getParameter("nickName"));
                     System.out.println("200");
-                } else {
+                } else {//注册失败
                     response.getWriter().write("210");
                     System.out.println("210");
                 }
-            } catch (Exception e) {
+            } catch (Exception e) {//数据库出错
                 response.getWriter().write("120");
                 System.out.println("120");
             }
-        } else {
+        } else {//openid不存在
             response.getWriter().write("220");
             System.out.println("220");
         }
