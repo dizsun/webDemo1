@@ -20,6 +20,8 @@ public class LogFilter implements Filter {
         HttpServletRequest httpServletRequest = (HttpServletRequest) req;
         System.out.println("Filter已经截获到用户的请求地址：" + httpServletRequest.getServletPath());
         chain.doFilter(req, resp);
+        resp.setContentType("text/json;charset=UTF-8");
+        resp.setCharacterEncoding("UTF-8");
         long after = System.currentTimeMillis();
 //        System.out.println("过滤结束");
         System.out.println("请求被定位到" + httpServletRequest.getRequestURI() + "  所花的时间为：" + (after - before));
