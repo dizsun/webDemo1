@@ -38,6 +38,7 @@ public class WxLoginServlet extends HttpServlet {
                 }
             } catch (Exception e) {
                 response.getWriter().write("120");
+                response.getWriter().write(data.getOpenid());
             }
         }else {
             //微信账号登陆错误
