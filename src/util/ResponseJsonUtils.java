@@ -6,6 +6,7 @@ import java.net.URL;
 
 import javax.servlet.http.HttpServletResponse;
 
+import bean.DataBean;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;

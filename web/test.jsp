@@ -9,13 +9,7 @@
 <html>
 <body>
 <%
-    String str = request.getParameter("str");
-    out.write(str+"<br/>");
-    out.write(new String(str.getBytes("ISO-8859-1"),"utf-8")+"<br/>");
-    out.write(new String(str.getBytes("ISO-8859-1"),"big5")+"<br/>");
-    out.write(new String(str.getBytes("ISO-8859-1"),"gbk")+"<br/>");
-    out.write(new String(str.getBytes("ISO-8859-1"),"gb2312")+"<br/>");
-    out.write(new String(str.getBytes(),"utf-8")+"<br/>");
+
 %>
 </body>
 </html>

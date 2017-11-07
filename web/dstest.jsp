@@ -13,9 +13,14 @@
     Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wxdb"
             , "root", "root");
     Statement stmt = conn.createStatement();
-    ResultSet rs = stmt.executeQuery("select * from user_info");
-	if(rs.next()){
-	    out.write(rs.getString(1)+"::"+rs.getString(2)+"::"+rs.getString(3)+"::"+rs.getString(4));
+    ResultSet rs = stmt.executeQuery("select * from account");
+	while(rs.next()){
+	    out.write(rs.getInt(1)+"<br/>"
+                +rs.getString(2)+"<br/>"
+                +rs.getString(3)+"<br/>"
+                +String.valueOf(rs.getTimestamp(4)).replace(".0","")+"<br/>"
+                +rs.getInt(5)+"<br/>"
+        +rs.getString(6));
     }
 %>
 <%--<table bgcolor="aaaaaa" border="1" width="480">--%>

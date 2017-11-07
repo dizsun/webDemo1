@@ -1,5 +1,8 @@
-package util;
+package bean;
 
+/**
+ * 用code从微信服务器获取的登陆信息
+ */
 public class DataBean {
     private Integer errcode;
     private String errmsg;
