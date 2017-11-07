@@ -24,8 +24,8 @@ public class GetAccountServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String sessionId = request.getSession().getId();
         RedisUtil redisUtil = new RedisUtil();
-//        String openid = redisUtil.queryString(sessionId);
-        String openid = request.getParameter("openid");
+        String openid = redisUtil.queryString(sessionId);
+//        String openid = request.getParameter("openid");
         DbDao dbDao = (DbDao) getServletContext().getAttribute("dbDao");
         try {
             ResultSet resultSet = dbDao.query("select * from account where creator=?",openid);
