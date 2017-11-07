@@ -2,7 +2,6 @@ package servlet;
 
 import bean.AccountBean;
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import util.DbDao;
 import util.RedisUtil;
 
@@ -24,8 +23,8 @@ public class GetAccountServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String sessionId = request.getSession().getId();
         RedisUtil redisUtil = new RedisUtil();
-        String openid = redisUtil.queryString(sessionId);
-//        String openid = request.getParameter("openid");
+//        String openid = redisUtil.queryString(sessionId);
+        String openid = request.getParameter("openid");
         DbDao dbDao = (DbDao) getServletContext().getAttribute("dbDao");
         try {
             ResultSet resultSet = dbDao.query("select * from account where creator=?",openid);
@@ -37,7 +36,7 @@ public class GetAccountServlet extends HttpServlet {
                     AccountBean accountBean = new AccountBean();
                     accountBean.setId(resultSet.getInt("id"));
                     accountBean.setName(resultSet.getString("name"));
-                    accountBean.setBriefIntro(resultSet.getString("brief_intro"));
+                    accountBean.setBrief_introduction(resultSet.getString("brief_intro"));
                     accountBean.setDate(resultSet.getTimestamp("date"));
                     accountBean.setCode(resultSet.getInt("code"));
                     accountBean.setCreator(userName);

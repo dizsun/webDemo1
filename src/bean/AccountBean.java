@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class AccountBean {
     private int id;
     private String name;
-    private String briefIntro;
+    private String brief_introduction;
     private Timestamp date;
     private int code;
     private String creator;
@@ -15,10 +15,10 @@ public class AccountBean {
     public AccountBean() {
     }
 
-    public AccountBean(int id, String name, String briefIntro, Timestamp date, int code, String creator, int bills, int peers) {
+    public AccountBean(int id, String name, String brief_introduction, Timestamp date, int code, String creator, int bills, int peers) {
         this.id = id;
         this.name = name;
-        this.briefIntro = briefIntro;
+        this.brief_introduction = brief_introduction;
         this.date = date;
         this.code = code;
         this.creator = creator;
@@ -42,12 +42,12 @@ public class AccountBean {
         this.name = name;
     }
 
-    public String getBriefIntro() {
-        return briefIntro;
+    public String getBrief_introduction() {
+        return brief_introduction;
     }
 
-    public void setBriefIntro(String briefIntro) {
-        this.briefIntro = briefIntro;
+    public void setBrief_introduction(String brief_introduction) {
+        this.brief_introduction = brief_introduction;
     }
 
     public String getDate() {
