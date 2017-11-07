@@ -49,6 +49,7 @@ public class GetAccountServlet extends HttpServlet {
                     accounts.add(accountBean);
                 }
                 String accountsStr = JSON.toJSONString(accounts);
+                response.setCharacterEncoding("UTF-8");
                 response.getWriter().write(accountsStr);
             }else {
                 response.getWriter().write("300");
