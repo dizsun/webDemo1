@@ -69,6 +69,11 @@ public class DbDao {
 		}
 		return pstmt.executeQuery();
 	}
+	//查询数据
+	public ResultSet query(String sql) throws Exception {
+		PreparedStatement pstmt = getConnection().prepareStatement(sql);
+		return pstmt.executeQuery();
+	}
 	//修改数据
 	public void modify(String sql,Object...args) throws Exception {
 		PreparedStatement pstmt = getConnection().prepareStatement(sql);
