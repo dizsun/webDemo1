@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.ResultSet;
 
-@WebServlet(name = "generateAccountIdServlet", urlPatterns = {"/generateAccountId"})
-public class generateAccountIdServlet extends HttpServlet {
+@WebServlet(name = "GenerateAccountIdServlet", urlPatterns = {"/generateAccountId"})
+public class GenerateAccountIdServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
