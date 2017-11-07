@@ -16,6 +16,10 @@ import java.util.Map;
 @WebServlet(name = "AddAccountServlet", urlPatterns = {"/addAccount"})
 public class AddAccountServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RedisUtil redisUtil = new RedisUtil();
         String openid = redisUtil.queryString(request.getSession().getId());
 //        String id = request.getParameter("id");
@@ -41,9 +45,5 @@ public class AddAccountServlet extends HttpServlet {
             response.getWriter().write("120");
             e.printStackTrace();
         }
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 }

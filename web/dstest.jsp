@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" errorPage="dserror.jsp" %>
 <%@ page import="java.sql.*" %>
+<%@ page import="util.DbDao" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,18 +10,17 @@
 </head>
 <body>
 <%
-    Class.forName("com.mysql.jdbc.Driver");
-    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wxdb"
-            , "root", "root");
-    Statement stmt = conn.createStatement();
-    ResultSet rs = stmt.executeQuery("select * from account");
-	while(rs.next()){
-	    out.write(rs.getInt(1)+"<br/>"
-                +rs.getString(2)+"<br/>"
-                +rs.getString(3)+"<br/>"
-                +String.valueOf(rs.getTimestamp(4)).replace(".0","")+"<br/>"
-                +rs.getInt(5)+"<br/>"
-        +rs.getString(6));
+    DbDao dbDao = (DbDao)getServletConfig().getServletContext().getAttribute("dbDao");
+    Timestamp date = Timestamp.valueOf("2017-11-07 10:33:42");
+    dbDao.insert("insert into account(name,code,creator,brief_intro,date) value(?,?,?,?,?)",
+            "hello","12423","fdah","53473",date);
+    ResultSet resultSet = dbDao.query("select id from account where date=?",date);
+    if(resultSet.next()){
+        int id = resultSet.getInt("id");
+        dbDao.insert("insert into user_account(user_openid,account_id) value(?,?)","o4mLz0Jyvs84tOLwk1BSXPZHTtVU",id);
+        response.getWriter().write("400");
+    }else {
+        response.getWriter().write("410");
     }
 %>
 <%--<table bgcolor="aaaaaa" border="1" width="480">--%>
