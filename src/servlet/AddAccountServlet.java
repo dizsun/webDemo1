@@ -21,17 +21,15 @@ public class AddAccountServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RedisUtil redisUtil = new RedisUtil();
         String openid = redisUtil.queryString(request.getSession().getId());
-//        String id = request.getParameter("id");
         String name = request.getParameter("name");
         String code = request.getParameter("code");
-        String creator = request.getParameter("creator");
         String brief_introduction = request.getParameter("brief_introduction");
         String dateStr = request.getParameter("date");
         Timestamp date = Timestamp.valueOf(dateStr);
         DbDao dbDao = (DbDao) getServletContext().getAttribute("dbDao");
         try {
             dbDao.insert("insert into account(name,code,creator,brief_intro,date) value(?,?,?,?,?)",
-                    name,code,creator,brief_introduction,date);
+                    name,code,openid,brief_introduction,date);
             ResultSet resultSet = dbDao.query("select id from account where date=?",date);
             if(resultSet.next()){
                 int id = resultSet.getInt("id");
