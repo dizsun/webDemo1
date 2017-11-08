@@ -13,10 +13,13 @@ import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.Map;
 
+/**
+ * 添加账号
+ */
 @WebServlet(name = "AddAccountServlet", urlPatterns = {"/addAccount"})
 public class AddAccountServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doGet(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
