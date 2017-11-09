@@ -27,11 +27,11 @@ public class GetAccountServlet extends HttpServlet {
 //        String openid = request.getParameter("openid");
         DbDao dbDao = (DbDao) getServletContext().getAttribute("dbDao");
         try {
-            ResultSet resultSet = dbDao.query("select * from account where creator=?",openid);
-            ResultSet userSet = dbDao.query("select user_nickname from user_info where user_openid=?",openid);
-            if(userSet.next()){
-                String userName = userSet.getString("user_nickname");
-                ArrayList<AccountBean> accounts = new ArrayList<>();
+            ResultSet userSet = dbDao.query("select account_id from user_account where user_openid=?",openid);
+            ArrayList<AccountBean> accounts = new ArrayList<>();
+            while(userSet.next()){
+                int account_id = userSet.getInt("account_id");
+                ResultSet resultSet = dbDao.query("select * from account where id=?",account_id);
                 while (resultSet.next()){
                     AccountBean accountBean = new AccountBean();
                     accountBean.setId(resultSet.getInt("id"));
@@ -39,7 +39,7 @@ public class GetAccountServlet extends HttpServlet {
                     accountBean.setBrief_introduction(resultSet.getString("brief_intro"));
                     accountBean.setDate(resultSet.getTimestamp("date"));
                     accountBean.setCode(resultSet.getInt("code"));
-                    accountBean.setCreator(userName);
+                    accountBean.setCreator(resultSet.getString("creator"));
                     ResultSet user_accounts = dbDao.query("select count(*) as num from user_account where account_id=?",accountBean.getId());
                     user_accounts.next();
                     accountBean.setPeers(user_accounts.getInt("num"));
@@ -48,12 +48,10 @@ public class GetAccountServlet extends HttpServlet {
                     accountBean.setBills(account_bills.getInt("num"));
                     accounts.add(accountBean);
                 }
-                String accountsStr = JSON.toJSONString(accounts);
-                response.setCharacterEncoding("UTF-8");
-                response.getWriter().write(accountsStr);
-            }else {
-                response.getWriter().write("300");
             }
+            String accountsStr = JSON.toJSONString(accounts);
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(accountsStr);
         } catch (Exception e) {
             response.getWriter().write("120");
             e.printStackTrace();

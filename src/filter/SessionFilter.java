@@ -9,7 +9,7 @@ import java.io.IOException;
 
 @WebFilter(filterName = "SessionFilter")
 public class SessionFilter implements Filter {
-    public static String[] sessionPaths={"/getAccount","/addAccount","/register"};
+    public static String[] sessionPaths={"/getAccount","/addAccount","/register","/joinAccount"};
     public void destroy() {
     }
 
