@@ -39,7 +39,12 @@ public class GetAccountServlet extends HttpServlet {
                     accountBean.setBrief_introduction(resultSet.getString("brief_intro"));
                     accountBean.setDate(resultSet.getTimestamp("date"));
                     accountBean.setCode(resultSet.getInt("code"));
-                    accountBean.setCreator(resultSet.getString("creator"));
+                    ResultSet resultSet1 = dbDao.query("select user_nickname from user_info where user_openid=?",resultSet.getString("creator"));
+                    if(resultSet1.next()){
+                        accountBean.setCreator(resultSet1.getString("user_nickname"));
+                    }else {
+                        accountBean.setCreator("未知");
+                    }
                     ResultSet user_accounts = dbDao.query("select count(*) as num from user_account where account_id=?",accountBean.getId());
                     user_accounts.next();
                     accountBean.setPeers(user_accounts.getInt("num"));
