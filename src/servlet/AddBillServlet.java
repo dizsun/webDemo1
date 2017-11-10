@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.ResultSet;
 
-@WebServlet(name = "AddBillServlet",urlPatterns = {"/addBil"})
+@WebServlet(name = "AddBillServlet",urlPatterns = {"/addBill"})
 public class AddBillServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
