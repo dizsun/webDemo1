@@ -14,12 +14,12 @@ public class LogFilter implements Filter {
     }
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
-        long before = System.currentTimeMillis();
+//        long before = System.currentTimeMillis();
         HttpServletRequest httpServletRequest = (HttpServletRequest) req;
-        System.out.println("Filter已经截获到用户的请求地址：" + httpServletRequest.getServletPath());
+        System.out.println("LogFilter已经截获到用户的请求地址：" + httpServletRequest.getServletPath());
         chain.doFilter(req, resp);
-        long after = System.currentTimeMillis();
-        System.out.println("请求被定位到" + httpServletRequest.getRequestURI() + "  所花的时间为：" + (after - before));
+//        long after = System.currentTimeMillis();
+//        System.out.println("请求被定位到" + httpServletRequest.getRequestURI() + "  所花的时间为：" + (after - before));
     }
 
     public void init(FilterConfig config) throws ServletException {
