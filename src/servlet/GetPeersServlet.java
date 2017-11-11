@@ -27,8 +27,11 @@ public class GetPeersServlet extends HttpServlet {
             ArrayList<PeerBean> peerBeans = new ArrayList<>();
             while (resultSet.next()){
                 PeerBean peerBean = new PeerBean();
-                peerBean.setUser_nickname(resultSet.getString("user_nickname"));
-                peerBean.setUser_avatarUrl(resultSet.getString("user_avatarUrl"));
+                String openid = resultSet.getString("user_openid");
+                ResultSet resultSet1 = dbDao.query("select * from user_info where user_open_id=?",openid);
+                resultSet1.next();
+                peerBean.setUser_nickname(resultSet1.getString("user_nickname"));
+                peerBean.setUser_avatarUrl(resultSet1.getString("user_avatarUrl"));
                 peerBeans.add(peerBean);
             }
             String peersStr = JSON.toJSONString(peerBeans);
