@@ -10,8 +10,9 @@ import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 import javax.servlet.http.HttpSessionBindingEvent;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 @WebListener()
 public class GetConnListener implements ServletContextListener,
@@ -32,17 +33,16 @@ public class GetConnListener implements ServletContextListener,
         String pass = application.getInitParameter("password");
         DbDao dbDao = new DbDao(driver, url, user, pass);
         application.setAttribute("dbDao", dbDao);
-        try {
-            ResultSet resultSet = dbDao.query("select id from account order by id desc limit 1");
-            if(resultSet.next()){
-                int id = resultSet.getInt("id");
-                application.setAttribute("generateAccountId",id+1);
-            }else {
-                application.setAttribute("generateAccountId",1);
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            public void run() {
+                try {
+                    dbDao.query("use wxdb");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        }, 0 , 3600000);
     }
 
     public void contextDestroyed(ServletContextEvent sce) {

@@ -51,12 +51,9 @@ public class RedisUtil
         //redis.persist("key");
 
         //EXISTS 检查给定key是否存在。
-        boolean flag = redis.exists(key);
-        if(!flag){
-            redis.set(key, value);
-            redis.expire(key, 3600);
-            redis.close();
-        }
+        redis.set(key, value);
+        redis.expire(key, 3600);
+        redis.close();
     }
     public boolean checkKey(String key){
         Jedis  redis = new Jedis ("127.0.0.1",6379);//连接redis
