@@ -1,6 +1,7 @@
 package servlet;
 
 import bean.BillBean;
+import com.alibaba.fastjson.JSON;
 import util.DbDao;
 
 import javax.servlet.ServletException;
@@ -29,9 +30,15 @@ public class GetBillsServlet extends HttpServlet {
                 billBean.setId(resultSet.getInt("id"));
                 billBean.setBrief_intro(resultSet.getString("brief_intro"));
                 billBean.setCreator(resultSet.getString("creator"));
-
+                billBean.setMoney(resultSet.getString("money"));
+                billBean.setTimestamp(resultSet.getTimestamp("timestamp"));
+                billBeans.add(billBean);
             }
+            String billsJson = JSON.toJSONString(billBeans);
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(billsJson);
         } catch (Exception e) {
+            response.getWriter().write("120");
             e.printStackTrace();
         }
     }
