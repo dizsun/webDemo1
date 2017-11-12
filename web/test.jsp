@@ -1,4 +1,4 @@
-<%@ page import="util.RedisUtil" %><%--
+<%@ page import="wxapp.util.RedisUtil" %><%--
   Created by IntelliJ IDEA.
   User: dizsun
   Date: 2017/11/2
