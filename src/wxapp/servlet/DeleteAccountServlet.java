@@ -20,7 +20,7 @@ public class DeleteAccountServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RedisUtil redisUtil = new RedisUtil();
         String openid = redisUtil.queryString(request.getSession().getId());
-        String account_id=request.getParameter("account_id");
+        int account_id=Integer.parseInt(request.getParameter("account_id"));
         DbDao dbDao = (DbDao) getServletContext().getAttribute("dbDao");
         try {
             ResultSet resultSet = dbDao.query("select creator from account where id=?",account_id);
