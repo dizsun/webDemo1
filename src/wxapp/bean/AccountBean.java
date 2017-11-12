@@ -11,11 +11,12 @@ public class AccountBean {
     private String creator;
     private int bills;
     private int peers;
+    private String total;
 
     public AccountBean() {
     }
 
-    public AccountBean(int id, String name, String brief_introduction, Timestamp date, int code, String creator, int bills, int peers) {
+    public AccountBean(int id, String name, String brief_introduction, Timestamp date, int code, String creator, int bills, int peers, String total) {
         this.id = id;
         this.name = name;
         this.brief_introduction = brief_introduction;
@@ -24,6 +25,15 @@ public class AccountBean {
         this.creator = creator;
         this.bills = bills;
         this.peers = peers;
+        this.total = total;
+    }
+
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) {
+        this.total = total;
     }
 
     public String getId() {
