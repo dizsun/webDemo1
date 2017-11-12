@@ -24,6 +24,7 @@ public class DeleteAccountServlet extends HttpServlet {
         DbDao dbDao = (DbDao) getServletContext().getAttribute("dbDao");
         try {
             ResultSet resultSet = dbDao.query("select creator from account where id=?",account_id);
+            resultSet.next();
             String creator = resultSet.getString("creator");
             if(creator.equals(openid)){
                 dbDao.update("delete from account where id=?",account_id);
