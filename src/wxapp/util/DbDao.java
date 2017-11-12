@@ -75,7 +75,7 @@ public class DbDao {
 		return pstmt.executeQuery();
 	}
 	//修改数据
-	public void modify(String sql,Object...args) throws Exception {
+	public void update(String sql,Object...args) throws Exception {
 		PreparedStatement pstmt = getConnection().prepareStatement(sql);
 		for (int i = 0; i < args.length; i++) {
 			pstmt.setObject(i+1, args[i]);

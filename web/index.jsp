@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>测试</title>
+<title>公共账本</title>
 </head>
 <body>
 hello啊<br/>

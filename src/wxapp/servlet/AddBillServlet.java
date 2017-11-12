@@ -29,6 +29,11 @@ public class AddBillServlet extends HttpServlet {
             if(resultSet.next()){
                 String creator=resultSet.getString("user_nickname");
                 if(dbDao.insert("insert into bill(brief_intro,creator,money,account_id) value(?,?,?,?)",brief_intro,creator,money,account_id)){
+                    ResultSet resultSet1 = dbDao.query("select total from account where id=?",account_id);
+                    resultSet1.next();
+                    Double total = Double.parseDouble(resultSet1.getString("total"));
+                    Double bill_money = Double.parseDouble(money);
+                    dbDao.update("update account set total=?",String.valueOf(total+bill_money));
                     response.getWriter().write("600");
                 }else {
                     response.getWriter().write("610");
