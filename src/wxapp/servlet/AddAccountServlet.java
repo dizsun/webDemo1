@@ -24,13 +24,11 @@ public class AddAccountServlet extends HttpServlet {
         String name = request.getParameter("name");
         String code = request.getParameter("code");
         String brief_introduction = request.getParameter("brief_introduction");
-        String dateStr = request.getParameter("date");
-        Timestamp date = Timestamp.valueOf(dateStr);
         DbDao dbDao = (DbDao) getServletContext().getAttribute("dbDao");
         try {
-            dbDao.insert("insert into account(name,code,creator,brief_intro,date) value(?,?,?,?,?)",
-                    name,code,openid,brief_introduction,date);
-            ResultSet resultSet = dbDao.query("select id from account where date=?",date);
+            dbDao.insert("insert into account(name,code,creator,brief_intro) value(?,?,?,?)",
+                    name,code,openid,brief_introduction);
+            ResultSet resultSet = dbDao.query("select id from account where creator=? order by id desc",openid);
             if(resultSet.next()){
                 int id = resultSet.getInt("id");
                 dbDao.insert("insert into user_account(user_openid,account_id) value(?,?)",openid,id);
