@@ -14,5 +14,6 @@ hello啊<br/>
 <a href="session_request.jsp">session测试</a><br/>
 <a href="login">登陆功能测试</a><br/>
 <a href="test.jsp">请求测试</a><br/>
+<a href="query_express.jsp">快递查询</a><br/>
 </body>
 </html>

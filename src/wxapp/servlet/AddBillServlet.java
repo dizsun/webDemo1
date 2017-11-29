@@ -33,7 +33,7 @@ public class AddBillServlet extends HttpServlet {
                     resultSet1.next();
                     Double total = Double.parseDouble(resultSet1.getString("total"));
                     Double bill_money = Double.parseDouble(money);
-                    dbDao.update("update account set total=?",String.valueOf(total+bill_money));
+                    dbDao.update("update account set total=? where id=?",String.valueOf(total+bill_money),account_id);
                     response.getWriter().write("600");
                 }else {
                     response.getWriter().write("610");
